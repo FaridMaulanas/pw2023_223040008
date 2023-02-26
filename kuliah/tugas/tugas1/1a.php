@@ -13,10 +13,11 @@ $hat = 'Topi';
 </head>
 
 <body>
-    <h2>
-        <?php
-        echo "<i>\"$hat saya $bulat, $bulat $hat saya.\"</i>";
-        ?>
+    <h2><i>
+            "<?php
+                echo "$hat saya $bulat, $bulat $hat saya.";
+                ?>"
+        </i>
     </h2>
 
 </body>

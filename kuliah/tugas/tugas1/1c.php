@@ -8,6 +8,12 @@
     <title>Tugas 1C</title>
 
     <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            line-height: 0;
+        }
+
         .container {
             display: flex;
         }
