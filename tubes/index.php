@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+$harga1 = 'Rp.99.999';
+$harga2 = 'Rp.350.000';
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,8 +45,23 @@
             <a class="nav-link" href="#contact">Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="login.php">Login</a>
+            <?php if (isset($_SESSION['login'])) : ?>
           </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-person"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+            </ul>
+          </li>
+        <?php else : ?>
+          <a class="nav-link active" href="login.php">Login</i></a>
+        <?php endif; ?>
         </ul>
       </div>
     </div>
@@ -55,7 +80,7 @@
         <div class="carousel-caption">
           <h5>POLOSAN.ID</h5>
           <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint consectetur libero pariatur at tempora ratione quidem deserunt eum, magni non.
+            We are a clothing brand that is committed to presenting products with stylish designs, the best quality, and affordable prices. We believe that clothing is not just a functional item to cover the body, but also a part of one's identity and lifestyle.
           </p>
           <p><a href="#products" class="btn btn-secondary mt-3">Shop Now</a></p>
         </div>
@@ -118,9 +143,10 @@
           <div class="card">
             <img src="img/odsoversizedbasic-black1_600x.jpg" class="card-img-top" alt="forsaken" data-aos="fade-right" data-aos-duration="1000" />
             <div class="card-body">
-              <h3 data-aos="fade-right" data-aos-duration="3000">Black Oversized Shirt</h3>
+              <h5 data-aos="fade-right" data-aos-duration="3000">Black Oversized Shirt</h5>
+              <p> <?php echo "$harga1" ?></p>
               <p class="card-text" data-aos="fade-right" data-aos-duration="3000">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit, odio laudantium animi magni itaque perferendis totam et soluta nisi fugiat, at architecto tempore aperiam reprehenderit blanditiis porro autem odit sed.
+                our stylish and versatile shirt, designed to elevate your wardrobe with its timeless appeal and impeccable craftsmanship. Crafted from premium quality fabrics, this shirt offers a comfortable fit and a luxurious feel against your skin.
               </p>
               <button type="submit" class="btn btn-secondary">Buy Now</button>
             </div>
@@ -130,9 +156,10 @@
           <div class="card">
             <img src="img/odsoversizedbasic-white1_600x.jpg" class="card-img-top" alt="Jinggg" data-aos="fade-up" data-aos-duration="1000" />
             <div class="card-body">
-              <h3 data-aos="fade-up" data-aos-duration="3000">White Oversized Shirt</h3>
+              <h5 data-aos="fade-up" data-aos-duration="3000">White Oversized Shirt</h5>
+              <p> <?php echo "$harga1" ?></p>
               <p class="card-text" data-aos="fade-up" data-aos-duration="3000">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. A qui ullam aliquid voluptate eum nesciunt temporibus minima recusandae neque libero repellendus vel earum, aperiam dolores, eligendi, quae est unde corrupti!
+                our stylish and versatile shirt, designed to elevate your wardrobe with its timeless appeal and impeccable craftsmanship. Crafted from premium quality fabrics, this shirt offers a comfortable fit and a luxurious feel against your skin.
               </p>
               <button type="submit" class="btn btn-secondary">Buy Now</button>
             </div>
@@ -142,9 +169,10 @@
           <div class="card">
             <img src="img/odsoversizedbasic-darkgrey1_600x.jpg" class="card-img-top" alt="mindfreak" data-aos="fade-left" data-aos-duration="1000" />
             <div class="card-body">
-              <h3 data-aos="fade-left" data-aos-duration="3000">Darkgrey Oversized Shirt</h3>
+              <h5 data-aos="fade-left" data-aos-duration="3000">Darkgrey Oversized Shirt</h5>
+              <p> <?php echo "$harga1" ?></p>
               <p class="card-text" data-aos="fade-left" data-aos-duration="3000">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat ullam voluptas, iste, mollitia assumenda magnam recusandae minus rerum tempore illo beatae quidem vitae totam, impedit asperiores ipsa libero facere molestiae?
+                our stylish and versatile shirt, designed to elevate your wardrobe with its timeless appeal and impeccable craftsmanship. Crafted from premium quality fabrics, this shirt offers a comfortable fit and a luxurious feel against your skin.
               </p>
               <button type="submit" class="btn btn-secondary">Buy Now</button>
             </div>
@@ -154,7 +182,8 @@
           <div class="card">
             <img src="img/jaket item.jpg" class="card-img-top" alt="benkai" data-aos="fade-right" data-aos-duration="3000" />
             <div class="card-body">
-              <h3 data-aos="fade-right" data-aos-duration="3000">Black Oversized Hoodie</h3>
+              <h5 data-aos="fade-right" data-aos-duration="3000">Black Oversized Hoodie</h5>
+              <p> <?php echo "$harga2" ?></p>
               <p class="card-text" data-aos="fade-right" data-aos-duration="3000">
                 ESSENTIALS Hoodie in sweatshirt fabric made from a cotton blend. Relaxed fit with a jersey-lined, drawstring hood, a kangaroo pocket, long sleeves and wide ribbing at the cuffs and hem. Soft brushed inside.
               </p>
@@ -166,7 +195,8 @@
           <div class="card">
             <img src="img/jaket putih.jpg" class="card-img-top" alt="cgrs" data-aos="fade-up" data-aos-duration="3000" />
             <div class="card-body">
-              <h3 data-aos="fade-up" data-aos-duration="3000">White Oversized Hoodie</h3>
+              <h5 data-aos="fade-up" data-aos-duration="3000">White Oversized Hoodie</h5>
+              <p> <?php echo "$harga2" ?></p>
               <p class="card-text" data-aos="fade-up" data-aos-duration="3000">
                 ESSENTIALS Hoodie in sweatshirt fabric made from a cotton blend. Relaxed fit with a jersey-lined, drawstring hood, a kangaroo pocket, long sleeves and wide ribbing at the cuffs and hem. Soft brushed inside.
               </p>
@@ -178,7 +208,8 @@
           <div class="card">
             <img src="img/jaket beige.jpg" class="card-img-top" alt="d4v41" data-aos="fade-left" data-aos-duration="3000" />
             <div class="card-body">
-              <h3 data-aos="fade-left" data-aos-duration="3000">Beige Oversized Hoodie</h3>
+              <h5 data-aos="fade-left" data-aos-duration="3000">Beige Oversized Hoodie</h5>
+              <p> <?php echo "$harga2" ?></p>
               <p class="card-text" data-aos="fade-left" data-aos-duration="3000">
                 ESSENTIALS Hoodie in sweatshirt fabric made from a cotton blend. Relaxed fit with a jersey-lined, drawstring hood, a kangaroo pocket, long sleeves and wide ribbing at the cuffs and hem. Soft brushed inside.
               </p>
@@ -200,7 +231,7 @@
             Contact us
           </h2>
           <p class="text-secondary" data-aos="zoom-in-right" data-aos-duration="1500">
-            For Partnership Purpose you can contact us
+            If you find any problems feel free to contact us
           </p>
         </div>
       </div>

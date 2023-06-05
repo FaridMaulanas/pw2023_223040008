@@ -1,46 +1,66 @@
+<?php
+
+include 'functions.php';
+
+error_reporting(0);
+
+session_start();
+
+if (isset($_SESSION['username'])) {
+  header("Location: index.php");
+}
+
+if (isset($_POST['submit'])) {
+  $email = $_POST['email'];
+  $password = md5($_POST['password']);
+
+  $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
+  $result = mysqli_query($conn, $sql);
+  if ($result->num_rows > 0) {
+    $row = mysqli_fetch_assoc($result);
+    $_SESSION['username'] = $row['username'];
+    $_SESSION['login'] = true;
+    header("Location: index.php");
+  } else {
+    echo "<script>alert('Email atau password Anda salah. Silahkan coba lagi!')</script>";
+  }
+}
+?>
+
 <!DOCTYPE html>
-<!-- Coding By CodingNepal - codingnepalweb.com -->
-<html lang="en">
+<html>
+
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Login & Registration Form</title>
-  <!---Custom CSS File--->
-  <link rel="stylesheet" href="login.css">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" type="text/css" href="reg_log.css">
+
+  <title>Login Page</title>
 </head>
+
 <body>
+  <div class="alert alert-warning" role="alert">
+    <?php echo $_SESSION['error'] ?>
+  </div>
+
   <div class="container">
-    <input type="checkbox" id="check">
-    <div class="login form">
-      <header>Login</header>
-      <form action="#">
-        <input type="text" placeholder="Enter your email">
-        <input type="password" placeholder="Enter your password">
-        <a href="#">Forgot password?</a>
-        <input type="button" class="button" value="Login">
-      </form>
-      <div class="signup">
-        <span class="signup">Don't have an account?
-         <label for="check">Signup</label>
-        </span>
+    <form action="" method="POST" class="login-email">
+      <p class="login-text" style="font-size: 2rem; font-weight: 800;">Login</p>
+      <div class="input-group">
+        <input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>" required>
       </div>
-    </div>
-    <div class="registration form">
-      <header>Signup</header>
-      <form action="#">
-        <input type="text" placeholder="Enter your username">
-        <input type="text" placeholder="Enter your email">
-        <input type="password" placeholder="Create a password">
-        <input type="password" placeholder="Confirm your password">
-        <input type="button" class="button" value="Signup">
-      </form>
-      <div class="signup">
-        <span class="signup">Already have an account?
-         <label for="check">Login</label>
-        </span>
+      <div class="input-group">
+        <input type="password" placeholder="Password" name="password" value="<?php echo $_POST['password']; ?>" required>
       </div>
-    </div>
+      <div class="input-group">
+        <button name="submit" class="btn">Login</button>
+      </div>
+      <p class="login-register-text">Already have an account? <a href="register.php">Register</a></p>
+    </form>
   </div>
 </body>
+
 </html>
