@@ -24,14 +24,12 @@ function tambah($data)
 {
     $conn = koneksi();
 
-    $Nama_Produk = htmlspecialchars($data['Nama_produk']);
-    $Deskripsi = htmlspecialchars($data['Deskripsi']);
+    $nama_barang = htmlspecialchars($data['nama_barang']);
+    $deskripsi = htmlspecialchars($data['deskripsi']);
     $gambar = htmlspecialchars($data['gambar']);
-    $Kategori = htmlspecialchars($data['Kategori']);
-    $Harga = htmlspecialchars($data['Harga']);
-    $Stock = htmlspecialchars($data['link']);
+    $harga = htmlspecialchars($data['harga']);
 
-    $query = "INSERT INTO berita VALUES (null, '$Nama_Produk', '$Deskripsi', '$gambar', '$Kategori', '$Harga', '$Stock')";
+    $query = "INSERT INTO produk VALUES (null, '$nama_barang', '$deskripsi', '$gambar', '$harga')";
 
     mysqli_query($conn, $query) or die(mysqli_error($conn));
 

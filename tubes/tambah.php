@@ -33,30 +33,22 @@ if (isset($_POST["tambah"])) {
             <div class="col-md-8">
                 <form action="" method="post">
                     <div class="mb-3 w-25">
-                        <label for="judul" class="form-label">Nama Barang</label>
-                        <input type="text" class="form-control" name="Nama_Barang" id="Nama_Barang" maxlength="9" autofocus required>
+                        <label for="nama_barang" class="form-label">Nama Barang</label>
+                        <input type="text" class="form-control" name="nama_barang" id="nama_barang" autofocus required>
                     </div>
                     <div class="mb-3">
-                        <label for="isi" class="form-label">Deskripsi</label>
-                        <input type="text" class="form-control" name="Deskripsi" id="Deskripsi" required>
+                        <label for="deskripsi" class="form-label">Deskripsi</label>
+                        <input type="text" class="form-control" name="deskripsi" id="deskripsi" required>
                     </div>
                     <div class="mb-3">
                         <label for="gambar" class="form-label">Gambar</label>
                         <input type="text" class="form-control" name="gambar" id="gambar">
                     </div>
                     <div class="mb-3">
-                        <label for="kategori" class="form-label">Kategori</label>
-                        <input type="text" class="form-control" name="Kategori" id="Kategori">
+                        <label for="harga" class="form-label">Harga</label>
+                        <input type="number" class="form-control" name="harga" id="harga">
                     </div>
-                    <div class="mb-3">
-                        <label for="tanggalpublikasi" class="form-label">Harga</label>
-                        <input type="text" class="form-control" name="Harga" id="Harga">
-                    </div>
-                    <div class="mb-3">
-                        <label for="link" class="form-label">Stock</label>
-                        <input type="text" class="form-control" name="Stock" id="Stock">
-                    </div>
-                    <button class="btn btn-secondary" type="submit" name="submit">Tambah Data</button>
+                    <button class="btn btn-secondary" type="tambah" name="tambah">Tambah Data</button>
                 </form>
             </div>
         </div>

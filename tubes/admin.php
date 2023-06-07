@@ -33,9 +33,7 @@ $produk = query("SELECT * FROM produk");
                         <th scope="col">Gambar</th>
                         <th scope="col">Nama Barang</th>
                         <th scope="col">Deskripsi</th>
-                        <th scope="col">Kategori</th>
                         <th scope="col">Harga</th>
-                        <th scope="col">Stock</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
@@ -49,9 +47,7 @@ $produk = query("SELECT * FROM produk");
                             </td>
                             <td><?= $prdk['Nama_Barang']; ?></td>
                             <td><?= $prdk['Deskripsi']; ?></td>
-                            <td><?= $prdk['Kategori']; ?></td>
                             <td><?= $prdk['Harga']; ?></td>
-                            <td><?= $prdk['stock']; ?></td>
                             <td>
                                 <a href="ubah.php?id=<?= $prdk['id']; ?>" class="badge text-bg-warning">Ubah</a> |
                                 <a href="hapus.php?id=<?= $prdk['id']; ?>" class="badge text-bg-danger" onclick="return confirm('Yakin?');">Hapus</a>
