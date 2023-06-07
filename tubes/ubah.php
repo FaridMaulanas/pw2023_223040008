@@ -3,7 +3,7 @@ require('functions.php');
 
 $name = 'ubah produk';
 $id = $_GET['id'];
-$brt = query("SELECT * FROM berita WHERE id = $id")[0];
+$prdk = query("SELECT * FROM produk WHERE id = $id")[0];
 
 if (isset($_POST["ubah"])) {
     if (ubah($_POST) > 0) {
@@ -54,7 +54,7 @@ if (isset($_POST["ubah"])) {
                 </div>
                 <div class="mb-3">
                     <label for="harga" class="form-label">harga</label>
-                    <input type="date" class="form-control" name="harga" id="harga" value="<?= $prdk['harga']; ?>">
+                    <input type="number" class="form-control" name="harga" id="harga" value="<?= $prdk['harga']; ?>">
                 </div>
                 <button class=" btn btn-primary" type="submit" name="ubah">Ubah Data</button>
             </form>

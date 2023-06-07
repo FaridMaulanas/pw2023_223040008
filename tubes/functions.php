@@ -24,14 +24,47 @@ function tambah($data)
 {
     $conn = koneksi();
 
+    $gambar = htmlspecialchars($data['gambar']);
     $nama_barang = htmlspecialchars($data['nama_barang']);
     $deskripsi = htmlspecialchars($data['deskripsi']);
-    $gambar = htmlspecialchars($data['gambar']);
     $harga = htmlspecialchars($data['harga']);
 
-    $query = "INSERT INTO produk VALUES (null, '$nama_barang', '$deskripsi', '$gambar', '$harga')";
+    $query = "INSERT INTO produk VALUES (null, '$gambar', '$nama_barang', '$deskripsi', '$harga')";
 
     mysqli_query($conn, $query) or die(mysqli_error($conn));
+
+    return mysqli_affected_rows($conn);
+}
+
+function hapus($id)
+{
+    $conn = koneksi();
+    $query = "DELETE FROM produk WHERE id = $id";
+
+    mysqli_query($conn, $query) or die(mysqli_error($conn));
+
+    return mysqli_affected_rows($conn);
+}
+
+function ubah($data)
+{
+    $conn = koneksi();
+
+    $id = $data["id"];
+    $gambar = htmlspecialchars($data['gambar']);
+    $nama_barang = htmlspecialchars($data['nama_barang']);
+    $deskripsi = htmlspecialchars($data['deskripsi']);
+    $harga = htmlspecialchars($data['harga']);
+
+
+    $query = "UPDATE produk SET
+            gambar = '$gambar',
+            nama_barang = '$nama_barang',
+            deskripsi = '$deskripsi',
+            harga = '$harga'
+            WHERE id = $id";
+
+    mysqli_query($conn, $query);
 
     return mysqli_affected_rows($conn);
 }

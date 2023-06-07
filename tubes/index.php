@@ -138,27 +138,26 @@ $produk = query("SELECT * FROM produk");
         </div>
       </div>
       <div class="row">
-        <div class="col-md-4 mb-3">
-          <?php foreach ($produk as $prdk) : ?>
+        <?php foreach ($produk as $prdk) : ?>
+          <div class="col-md-4 mb-3">
             <div class="card">
-              <img src="img/<?= $prdk['gambar']; ?>" class="card-img-top" alt="forsaken" data-aos="fade-right" data-aos-duration="1000" />
+              <img src="img/<?= $prdk['gambar']; ?>" class="card-img-top" alt="#" data-aos="fade-right" data-aos-duration="1000" />
               <div class="card-body">
                 <h5 data-aos="fade-right" data-aos-duration="3000"><?= $prdk['nama_barang']; ?></h5>
-                <p> <?= $prdk['harga']; ?></p>
+                <p>$<?= $prdk['harga']; ?></p>
                 <p class="card-text" data-aos="fade-right" data-aos-duration="3000">
                   <?= $prdk['deskripsi']; ?>
                 </p>
                 <button type="submit" class="btn btn-secondary">Buy Now</button>
               </div>
             </div>
-          <?php endforeach; ?>
-        </div>
+          </div>
+        <?php endforeach; ?>
         <!-- <div class="col-md-4 mb-3">
           <div class="card">
             <img src="img/odsoversizedbasic-white1_600x.jpg" class="card-img-top" alt="Jinggg" data-aos="fade-up" data-aos-duration="1000" />
             <div class="card-body">
               <h5 data-aos="fade-up" data-aos-duration="3000">White Oversized Shirt</h5>
-              <p> <?php echo "$harga1" ?></p>
               <p class="card-text" data-aos="fade-up" data-aos-duration="3000">
                 our stylish and versatile shirt, designed to elevate your wardrobe with its timeless appeal and impeccable craftsmanship. Crafted from premium quality fabrics, this shirt offers a comfortable fit and a luxurious feel against your skin.
               </p>

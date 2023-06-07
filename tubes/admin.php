@@ -45,9 +45,9 @@ $produk = query("SELECT * FROM produk");
                             <td>
                                 <img src="img/<?= $prdk['gambar']; ?>" width="50">
                             </td>
-                            <td><?= $prdk['Nama_Barang']; ?></td>
-                            <td><?= $prdk['Deskripsi']; ?></td>
-                            <td><?= $prdk['Harga']; ?></td>
+                            <td><?= $prdk['nama_barang']; ?></td>
+                            <td><?= $prdk['deskripsi']; ?></td>
+                            <td><?= $prdk['harga']; ?></td>
                             <td>
                                 <a href="ubah.php?id=<?= $prdk['id']; ?>" class="badge text-bg-warning">Ubah</a> |
                                 <a href="hapus.php?id=<?= $prdk['id']; ?>" class="badge text-bg-danger" onclick="return confirm('Yakin?');">Hapus</a>
