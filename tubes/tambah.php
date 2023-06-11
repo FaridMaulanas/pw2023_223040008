@@ -8,7 +8,7 @@ if (isset($_POST["tambah"])) {
     if (tambah($_POST) > 0) {
         echo "<script>
     alert('Data berhasil ditambahkan!');
-    document.location.href = 'index.php';
+    document.location.href = 'admin.php';
     </script>";
     }
 }

@@ -21,11 +21,18 @@ if (isset($_POST['submit'])) {
     $row = mysqli_fetch_assoc($result);
     $_SESSION['username'] = $row['username'];
     $_SESSION['login'] = true;
-    header("Location: index.php");
+    if ($row['role'] === 'admin') {
+      $_SESSION['role'] = 'admin';
+      header("Location: index.php");
+    } else {
+      $_SESSION['role'] = 'user';
+      header("Location: index.php");
+    }
   } else {
-    echo "<script>alert('Email atau password Anda salah. Silahkan coba lagi!')</script>";
+    echo "<script>alert('Incorrect email or password. Please try again!')</script>";
   }
 }
+
 ?>
 
 <!DOCTYPE html>

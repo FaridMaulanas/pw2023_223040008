@@ -23,7 +23,6 @@ function query($query)
 function tambah($data)
 {
     $conn = koneksi();
-
     $gambar = htmlspecialchars($data['gambar']);
     $nama_barang = htmlspecialchars($data['nama_barang']);
     $deskripsi = htmlspecialchars($data['deskripsi']);

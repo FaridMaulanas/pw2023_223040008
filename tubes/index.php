@@ -1,9 +1,18 @@
 <?php
 session_start();
 require('functions.php');
-$produk = query("SELECT * FROM produk");
-
-
+if (isset($_GET['search'])) {
+  $keyword = $_GET['keyword'];
+  $query = "SELECT * FROM 
+  produk
+  WHERE 
+  nama_barang LIKE '%$keyword%' 
+  ";
+  $produk = query($query);
+} else {
+  //  siapkan data $produk
+  $produk = query("SELECT * FROM produk");
+}
 ?>
 
 
@@ -25,7 +34,7 @@ $produk = query("SELECT * FROM produk");
   <!-- navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">POLOSAN.ID</a>
+      <a class="navbar-brand" href="index.php">POLOSAN.ID</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -59,7 +68,12 @@ $produk = query("SELECT * FROM produk");
               <i class="bi bi-person"></i>
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <?php if ($_SESSION['role'] == 'admin') : ?>
+                <li><a class="dropdown-item" href="admin.php">Profile</a></li>
+              <?php else : ?>
+                <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+              <?php endif; ?>
+              <li>
               <li>
                 <hr class="dropdown-divider">
               </li>
@@ -67,9 +81,10 @@ $produk = query("SELECT * FROM produk");
             </ul>
           </li>
         <?php else : ?>
-          <a class="nav-link active" href="login.php">Login</i></a>
+          <li class="nav-item">
+            <a class="nav-link active" href="login.php">Login</a>
+          </li>
         <?php endif; ?>
-        </ul>
       </div>
     </div>
   </nav>
@@ -130,7 +145,7 @@ $produk = query("SELECT * FROM produk");
     </div>
   </section>
   <!-- akhir about -->
-  <!--produk -->
+  <!--judul produk -->
   <section id="products" class="member section-padding">
     <div class="container">
       <div class="row">
@@ -145,88 +160,29 @@ $produk = query("SELECT * FROM produk");
           </div>
         </div>
       </div>
-      <div class="row">
-        <?php foreach ($produk as $prdk) : ?>
-          <div class="col-md-4 mb-3">
-            <div class="card">
-              <img src="img/<?= $prdk['gambar']; ?>" class="card-img-top" alt="#" data-aos="fade-right" data-aos-duration="1000" />
-              <div class="card-body">
-                <h5 data-aos="fade-right" data-aos-duration="3000"><?= $prdk['nama_barang']; ?></h5>
-                <p>$<?= $prdk['harga']; ?></p>
-                <p class="card-text" data-aos="fade-right" data-aos-duration="3000">
-                  <?= $prdk['deskripsi']; ?>
-                </p>
-                <button type="submit" class="btn btn-secondary">Buy Now</button>
+      <!-- akhir jdul -->
+      <!-- produk -->
+      <div id="search-container">
+        <?php if ($produk) : ?>
+          <div class="row">
+            <?php foreach ($produk as $prdk) : ?>
+              <div class="col-md-4 mb-3">
+                <div class="card">
+                  <img src="img/<?= $prdk['gambar']; ?>" class="card-img-top" alt="#" data-aos="fade-right" data-aos-duration="1000" width="233" />
+                  <div class="card-body">
+                    <h5 data-aos="fade-right" data-aos-duration="3000"><?= $prdk['nama_barang']; ?></h5>
+                    <p>$<?= $prdk['harga']; ?></p>
+                    <p class="card-text" data-aos="fade-right" data-aos-duration="3000">
+                      <?= $prdk['deskripsi']; ?>
+                    </p>
+                    <button type="submit" class="btn btn-secondary">Buy Now</button>
+                  </div>
+                </div>
               </div>
-            </div>
+            <?php endforeach; ?>
           </div>
-        <?php endforeach; ?>
-        <!-- <div class="col-md-4 mb-3">
-          <div class="card">
-            <img src="img/odsoversizedbasic-white1_600x.jpg" class="card-img-top" alt="Jinggg" data-aos="fade-up" data-aos-duration="1000" />
-            <div class="card-body">
-              <h5 data-aos="fade-up" data-aos-duration="3000">White Oversized Shirt</h5>
-              <p class="card-text" data-aos="fade-up" data-aos-duration="3000">
-                our stylish and versatile shirt, designed to elevate your wardrobe with its timeless appeal and impeccable craftsmanship. Crafted from premium quality fabrics, this shirt offers a comfortable fit and a luxurious feel against your skin.
-              </p>
-              <button type="submit" class="btn btn-secondary">Buy Now</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-3">
-          <div class="card">
-            <img src="img/odsoversizedbasic-darkgrey1_600x.jpg" class="card-img-top" alt="mindfreak" data-aos="fade-left" data-aos-duration="1000" />
-            <div class="card-body">
-              <h5 data-aos="fade-left" data-aos-duration="3000">Darkgrey Oversized Shirt</h5>
-              <p> <?php echo "$harga1" ?></p>
-              <p class="card-text" data-aos="fade-left" data-aos-duration="3000">
-                our stylish and versatile shirt, designed to elevate your wardrobe with its timeless appeal and impeccable craftsmanship. Crafted from premium quality fabrics, this shirt offers a comfortable fit and a luxurious feel against your skin.
-              </p>
-              <button type="submit" class="btn btn-secondary">Buy Now</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-3">
-          <div class="card">
-            <img src="img/jaket item.jpg" class="card-img-top" alt="benkai" data-aos="fade-right" data-aos-duration="3000" />
-            <div class="card-body">
-              <h5 data-aos="fade-right" data-aos-duration="3000">Black Oversized Hoodie</h5>
-              <p> <?php echo "$harga2" ?></p>
-              <p class="card-text" data-aos="fade-right" data-aos-duration="3000">
-                ESSENTIALS Hoodie in sweatshirt fabric made from a cotton blend. Relaxed fit with a jersey-lined, drawstring hood, a kangaroo pocket, long sleeves and wide ribbing at the cuffs and hem. Soft brushed inside.
-              </p>
-              <button type="submit" class="btn btn-secondary">Buy Now</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-3">
-          <div class="card">
-            <img src="img/jaket putih.jpg" class="card-img-top" alt="cgrs" data-aos="fade-up" data-aos-duration="3000" />
-            <div class="card-body">
-              <h5 data-aos="fade-up" data-aos-duration="3000">White Oversized Hoodie</h5>
-              <p> <?php echo "$harga2" ?></p>
-              <p class="card-text" data-aos="fade-up" data-aos-duration="3000">
-                ESSENTIALS Hoodie in sweatshirt fabric made from a cotton blend. Relaxed fit with a jersey-lined, drawstring hood, a kangaroo pocket, long sleeves and wide ribbing at the cuffs and hem. Soft brushed inside.
-              </p>
-              <button type="submit" class="btn btn-secondary">Buy Now</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-3">
-          <div class="card">
-            <img src="img/jaket beige.jpg" class="card-img-top" alt="d4v41" data-aos="fade-left" data-aos-duration="3000" />
-            <div class="card-body">
-              <h5 data-aos="fade-left" data-aos-duration="3000">Beige Oversized Hoodie</h5>
-              <p> <?php echo "$harga2" ?></p>
-              <p class="card-text" data-aos="fade-left" data-aos-duration="3000">
-                ESSENTIALS Hoodie in sweatshirt fabric made from a cotton blend. Relaxed fit with a jersey-lined, drawstring hood, a kangaroo pocket, long sleeves and wide ribbing at the cuffs and hem. Soft brushed inside.
-              </p>
-
-              <button type="submit" class="btn btn-secondary">Buy Now</button>
-            </div>
-          </div>
-        </div> -->
       </div>
+    <?php endif; ?>
     </div>
   </section>
   <!-- akhir produk -->
@@ -269,6 +225,7 @@ $produk = query("SELECT * FROM produk");
   <!-- bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <!-- Akhir bootstrap -->
+  <script src="js/script.js"></script>
   <!-- aos -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>

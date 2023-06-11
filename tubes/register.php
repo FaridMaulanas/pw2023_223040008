@@ -21,8 +21,8 @@ if (isset($_POST['submit'])) {
         $sql = "SELECT * FROM users WHERE email='$email'";
         $result = mysqli_query($conn, $sql);
         if (!$result->num_rows > 0) {
-            $sql = "INSERT INTO users (username, email, password)
-                    VALUES ('$username', '$email', '$password')";
+            $sql = "INSERT INTO users (username, email, password, role)
+                    VALUES ('$username', '$email', '$password', 'user')";
             $result = mysqli_query($conn, $sql);
             if ($result) {
                 echo "<script>alert('Congratulation, registration complete!')</script>";
